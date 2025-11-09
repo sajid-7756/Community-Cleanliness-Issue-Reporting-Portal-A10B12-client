@@ -194,7 +194,7 @@ const IssueDetails = () => {
                 <input
                   type="text"
                   name="date"
-                  value={new Date()}
+                  value={new Date().toLocaleDateString()}
                   readOnly
                   className="input input-bordered w-full"
                 />

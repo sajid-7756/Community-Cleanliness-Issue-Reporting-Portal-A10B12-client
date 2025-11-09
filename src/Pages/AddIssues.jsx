@@ -1,25 +1,10 @@
-import React, { useContext, useState } from "react";
+import { useContext } from "react";
 import { AuthContext } from "../Provider/AuthContext";
+import useAxios from "../Hooks/useAxios";
 
-const AddIssue = ({ currentUser }) => {
+const AddIssue = () => {
   const { user } = useContext(AuthContext);
-  const [formData, setFormData] = useState({
-    title: "",
-    category: "Garbage",
-    location: "",
-    description: "",
-    image: "",
-    amount: "",
-    status: "ongoing",
-    date: new Date().toISOString().split("T")[0], // auto-set today's date
-    email: currentUser?.email || "",
-  });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
+  const axiosInstance = useAxios();
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -39,6 +24,23 @@ const AddIssue = ({ currentUser }) => {
       image,
       amount,
       status,
+      email: user?.email,
+      date: new Date().toLocaleDateString(),
+    });
+    const newIssue = {
+      title,
+      category,
+      location,
+      description,
+      image,
+      amount,
+      status,
+      email: user?.email,
+      date: new Date().toLocaleDateString(),
+    };
+
+    axiosInstance.post("/issues", newIssue).then((data) => {
+      console.log("issue after post", data.data);
     });
   };
 
@@ -62,8 +64,6 @@ const AddIssue = ({ currentUser }) => {
               <input
                 type="text"
                 name="title"
-                value={formData.title}
-                onChange={handleChange}
                 className="input input-bordered w-full"
                 required
               />
@@ -72,12 +72,7 @@ const AddIssue = ({ currentUser }) => {
             {/* Category Dropdown */}
             <div>
               <label className="label">Category</label>
-              <select
-                name="category"
-                value={formData.category}
-                onChange={handleChange}
-                className="select select-bordered w-full"
-              >
+              <select name="category" className="select select-bordered w-full">
                 <option>Garbage</option>
                 <option>Illegal Construction</option>
                 <option>Broken Public Property</option>
@@ -91,8 +86,6 @@ const AddIssue = ({ currentUser }) => {
               <input
                 type="text"
                 name="location"
-                value={formData.location}
-                onChange={handleChange}
                 className="input input-bordered w-full"
                 required
               />
@@ -103,8 +96,6 @@ const AddIssue = ({ currentUser }) => {
               <label className="label">Description</label>
               <textarea
                 name="description"
-                value={formData.description}
-                onChange={handleChange}
                 className="textarea textarea-bordered w-full"
                 required
               ></textarea>
@@ -116,20 +107,17 @@ const AddIssue = ({ currentUser }) => {
               <input
                 type="text"
                 name="image"
-                value={formData.image}
-                onChange={handleChange}
                 className="input input-bordered w-full"
               />
             </div>
 
             {/* Amount */}
             <div>
-              <label className="label">Suggested Fix Budget (Amount)</label>
+              <label className="label">Amount</label>
               <input
                 type="number"
                 name="amount"
-                value={formData.amount}
-                onChange={handleChange}
+                defaultValue={500}
                 className="input input-bordered w-full"
               />
             </div>
@@ -140,7 +128,7 @@ const AddIssue = ({ currentUser }) => {
               <input
                 type="text"
                 name="status"
-                value={formData.status}
+                value={"ongoing"}
                 readOnly
                 className="input input-bordered w-full bg-base-200"
               />
@@ -152,7 +140,7 @@ const AddIssue = ({ currentUser }) => {
               <input
                 type="text"
                 name="date"
-                value={formData.date}
+                value={new Date().toLocaleDateString()}
                 readOnly
                 className="input input-bordered w-full bg-base-200"
               />
