@@ -103,14 +103,30 @@ a.navlink.active {
 
 .swiper-button-next,
 .swiper-button-prev {
-  color: hsl(var(--pc)); /* DaisyUI primary color */
-  background: hsl(var(--b1)); /* base background */
+  color: hsl(var(--pc));
+  background: hsl(var(--b1));
   padding: 0.75rem;
   border-radius: 9999px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 .swiper-button-next:hover,
 .swiper-button-prev:hover {
-  color: hsl(var(--pc)); /* primary-content for contrast */
-  background: hsl(var(--p)); /* solid primary on hover */
+  color: hsl(var(--pc));
+  background: hsl(var(--p)); 
+}
+.rdg {
+  --rdg-color: #000;
+  --rdg-background-color: #fff;
+  --rdg-header-background-color: #f1f1f1;
+  --rdg-border-color: #ccc;
+}
+.rdg {
+  --rdg-color: #000;
+  --rdg-background-color: #fff;
+  --rdg-header-background-color: #f1f1f1;
+  --rdg-border-color: #ccc;
+  --rdg-row-hover-background-color: #e8f5e9;
+}
+.rdg .rdg-row:hover {
+  transition: background-color 0.2s ease-in-out;
 }

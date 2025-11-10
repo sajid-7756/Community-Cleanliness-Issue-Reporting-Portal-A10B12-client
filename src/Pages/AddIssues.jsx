@@ -17,17 +17,6 @@ const AddIssue = () => {
     const amount = e.target.amount.value;
     const status = e.target.status.value;
 
-    console.log({
-      title,
-      category,
-      location,
-      description,
-      image,
-      amount,
-      status,
-      email: user?.email,
-      date: new Date().toLocaleDateString(),
-    });
     const newIssue = {
       title,
       category,
