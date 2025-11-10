@@ -76,7 +76,7 @@ const LatestIssues = () => {
 
                 {/* Location */}
                 <p className="text-sm text-primary italic mb-2">
-                  <span className="font-bold text-black">Location:</span>{" "}
+                  <span className="font-bold">Location:</span>{" "}
                   {issue.location}
                 </p>
 

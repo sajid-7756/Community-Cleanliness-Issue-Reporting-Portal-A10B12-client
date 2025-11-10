@@ -1,18 +1,18 @@
 import React, { useContext, useEffect, useState } from "react";
 import Container from "../Components/Container";
-import useAxios from "../Hooks/useAxios";
 import { AuthContext } from "../Provider/AuthContext";
 import Table from "../Components/Table";
+import useAxiosSecure from "../Hooks/useAxiosSecure";
 
 const MyContribution = () => {
-  const axiosInstance = useAxios();
+  const axiosSecure = useAxiosSecure()
   const { user } = useContext(AuthContext);
   const [myContribution, setmyContribution] = useState([]);
   useEffect(() => {
-    axiosInstance.get(`/contributions/?email=${user?.email}`).then((data) => {
+    axiosSecure.get(`/contributions/?email=${user?.email}`).then((data) => {
       setmyContribution(data.data);
     });
-  }, [user, axiosInstance]);
+  }, [user, axiosSecure]);
   console.log(myContribution);
 
   return (

@@ -1,11 +1,11 @@
 import { useContext } from "react";
 import { AuthContext } from "../Provider/AuthContext";
-import useAxios from "../Hooks/useAxios";
 import toast from "react-hot-toast";
+import useAxiosSecure from "../Hooks/useAxiosSecure";
 
 const AddIssue = () => {
   const { user } = useContext(AuthContext);
-  const axiosInstance = useAxios();
+  const axiosSecure = useAxiosSecure();
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -29,7 +29,7 @@ const AddIssue = () => {
       date: new Date().toLocaleDateString(),
     };
 
-    axiosInstance.post("/issues", newIssue).then((data) => {
+    axiosSecure.post("/issues", newIssue).then((data) => {
       toast.success("Successfully added");
       console.log("issue after post", data.data);
     });
@@ -39,7 +39,9 @@ const AddIssue = () => {
     <div className="p-6 md:p-10 min-h-screen bg-base-100">
       {/* Header */}
       <div className="text-center mb-8">
-        <h2 className="text-3xl font-bold text-primary">Report a New Issue</h2>
+        <h2 className="text-3xl font-bold">
+          Report a New <span className="text-primary">Issue</span>
+        </h2>
         <p className="text-neutral mt-2">
           Help keep your community clean and safe by reporting local problems.
         </p>

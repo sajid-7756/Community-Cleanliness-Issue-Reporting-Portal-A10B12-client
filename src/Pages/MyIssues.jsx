@@ -1,11 +1,11 @@
 import { useEffect, useState, useContext } from "react";
-import useAxios from "../Hooks/useAxios";
 import { AuthContext } from "../Provider/AuthContext";
 import Container from "../Components/Container";
 import { useRef } from "react";
+import useAxiosSecure from "../Hooks/useAxiosSecure";
 
 const MyIssues = () => {
-  const axiosInstance = useAxios();
+  const axiosSecure = useAxiosSecure();
   const { user } = useContext(AuthContext);
   const [myIssues, setMyIssues] = useState([]);
   const [selectedIssue, setselectedIssue] = useState([]);
@@ -15,12 +15,12 @@ const MyIssues = () => {
 
   useEffect(() => {
     if (user?.email) {
-      axiosInstance
+      axiosSecure
         .get(`/issues/?email=${user.email}`)
         .then((res) => setMyIssues(res.data))
         .catch((err) => console.log(err));
     }
-  }, [axiosInstance, user]);
+  }, [axiosSecure, user]);
 
   const handleUpdateIssue = (e) => {
     e.preventDefault();
@@ -40,7 +40,7 @@ const MyIssues = () => {
       issueId,
     };
 
-    axiosInstance
+    axiosSecure
       .patch(`/issues/${issueId}`, updatedIssue)
       .then((res) => {
         if (res.data.modifiedCount) {
@@ -58,7 +58,7 @@ const MyIssues = () => {
   };
 
   const handleDeleteIssue = (id) => {
-    axiosInstance.delete(`/issues/${id}`).then((data) => {
+    axiosSecure.delete(`/issues/${id}`).then((data) => {
       alert("delete success");
       console.log("data after delete", data.data);
       const filteredIssues = myIssues.filter((e) => e._id !== id);
@@ -69,8 +69,7 @@ const MyIssues = () => {
   return (
     <Container className="p-6 md:p-10 min-h-screen">
       <h3 className="text-2xl font-bold mb-6">
-        My Submitted <span className="text-primary">Issues</span>:{" "}
-        {myIssues.length}
+        My <span className="text-primary">Issues </span>({myIssues.length})
       </h3>
 
       <div className="overflow-x-auto">
@@ -160,11 +159,17 @@ const MyIssues = () => {
         id="my_modal_5"
         className="modal modal-bottom sm:modal-middle"
       >
-        <div className="modal-box bg-base-200">
+        <div className="modal-box bg-white dark:bg-base-100">
           <div className="max-w-lg mx-auto p-6 bg-base-100 rounded-lg shadow">
             <h2 className="text-2xl font-bold mb-4 text-primary">
               Update Issue
             </h2>
+            <button
+              onClick={() => issueModalRef.current.close()}
+              className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+            >
+              ✕
+            </button>
             <form onSubmit={handleUpdateIssue} className="space-y-4">
               {/* Title */}
               <div>
@@ -224,6 +229,7 @@ const MyIssues = () => {
                       type="radio"
                       name="status"
                       value="ongoing"
+                      defaultChecked
                       className="radio radio-sm"
                     />
                     Ongoing
@@ -241,13 +247,6 @@ const MyIssues = () => {
               </div>
 
               <div className="modal-action">
-                <button
-                  onClick={() => issueModalRef.current.close()}
-                  className="btn btn-outline"
-                >
-                  Cancel
-                </button>
-
                 <button type="submit" className="btn btn-primary">
                   Submit Issue
                 </button>

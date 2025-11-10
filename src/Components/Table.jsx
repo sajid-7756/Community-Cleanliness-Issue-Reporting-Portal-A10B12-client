@@ -1,7 +1,6 @@
-import React from "react";
 import "react-data-grid/lib/styles.css";
 import { DataGrid } from "react-data-grid";
-import  jsPDF  from "jspdf";
+import jsPDF from "jspdf";
 import "jspdf-autotable";
 
 const Table = ({ myContribution }) => {
@@ -30,10 +29,10 @@ const Table = ({ myContribution }) => {
 
     doc.autoTable({
       head: [tableColumn],
-      body: tableRows
-    })
+      body: tableRows,
+    });
 
-    doc.save('My Contribution.pdf')
+    doc.save("My Contribution.pdf");
   };
 
   return (

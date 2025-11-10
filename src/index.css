@@ -1,16 +1,12 @@
 @import "tailwindcss";
-@plugin "daisyui";
+@plugin "daisyui" {
+  themes: myTheme --default, dark --prefersdark;
+}
 @plugin "daisyui/theme" {
   name: "mytheme";
   default: true;
   prefersdark: true;
   color-scheme: light;
-
-  /* Backgrounds */
-  --color-base-100: white; /* very light greenish white */
-  --color-base-200: oklch(95% 0.04 150);
-  --color-base-300: oklch(92% 0.05 150);
-  --color-base-content: oklch(20% 0.05 150);
 
   /* Brand greens */
   --color-primary: oklch(55% 0.25 150); /* medium eco green */
@@ -38,48 +34,79 @@
 
   --color-error: oklch(55% 0.25 30); /* earthy red */
   --color-error-content: oklch(98% 0.01 30);
+
+
+  /* border radius */
+  --radius-selector: 1rem;
+  --radius-field: 0.25rem;
+  --radius-box: 0.5rem;
+
+  /* base sizes */
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+
+  /* border size */
+  --border: 1px;
+
+  /* effects */
+  --depth: 1;
+  --noise: 0;
 }
-@import "tailwindcss";
-@plugin "daisyui";
 @plugin "daisyui/theme" {
-  name: "mytheme";
-  default: true;
-  prefersdark: true;
-  color-scheme: light;
+  name: "dark";
+  color-scheme: dark;
 
   /* Backgrounds */
-  --color-base-100: white; /* very light greenish white */
-  --color-base-200: oklch(95% 0.04 150);
-  --color-base-300: oklch(92% 0.05 150);
-  --color-base-content: oklch(20% 0.05 150);
+--color-primary: oklch(52% 0.18 150);   /* softer green for dark mode */
+--color-secondary: oklch(58% 0.16 180); /* teal, less bright */
+--color-accent: oklch(62% 0.18 140);    /* lime accent, balanced */
+--color-neutral: oklch(28% 0.02 240);   /* deep gray */
 
-  /* Brand greens */
-  --color-primary: oklch(55% 0.25 150); /* medium eco green */
-  --color-primary-content: oklch(98% 0.01 150);
+  /* Brand greens (slightly brighter for dark mode) */
+--color-primary: oklch(56% 0.18 150); /* softer eco green */
+--color-primary-content: oklch(95% 0.01 150); /* light text for contrast */
 
-  --color-secondary: oklch(65% 0.2 180); /* teal/blue‑green */
-  --color-secondary-content: oklch(98% 0.01 180);
+  --color-secondary: oklch(70% 0.2 180); /* teal/blue‑green */
+  --color-secondary-content: oklch(10% 0.02 180);
 
-  --color-accent: oklch(70% 0.25 140); /* fresh lime accent */
-  --color-accent-content: oklch(98% 0.01 140);
+  --color-accent: oklch(75% 0.25 140); /* lime accent pops more */
+  --color-accent-content: oklch(10% 0.02 140);
 
   /* Neutral grays */
-  --color-neutral: oklch(40% 0.02 240);
-  --color-neutral-content: oklch(98% 0.01 240);
+  --color-neutral: oklch(25% 0.02 240);
+  --color-neutral-content: oklch(95% 0.01 240);
 
-  /* Status colors */
-  --color-info: oklch(70% 0.2 200); /* aqua info */
-  --color-info-content: oklch(98% 0.01 200);
+  /* Status colors (slightly more saturated for visibility) */
+  --color-info: oklch(75% 0.2 200);
+  --color-info-content: oklch(10% 0.02 200);
 
-  --color-success: oklch(60% 0.25 140); /* success green */
-  --color-success-content: oklch(98% 0.01 140);
+  --color-success: oklch(65% 0.25 140);
+  --color-success-content: oklch(10% 0.02 140);
 
-  --color-warning: oklch(80% 0.25 90); /* warm yellow */
-  --color-warning-content: oklch(20% 0.05 90);
+  --color-warning: oklch(85% 0.25 90);
+  --color-warning-content: oklch(15% 0.05 90);
 
-  --color-error: oklch(55% 0.25 30); /* earthy red */
-  --color-error-content: oklch(98% 0.01 30);
+  --color-error: oklch(60% 0.25 30);
+  --color-error-content: oklch(10% 0.02 30);
+
+  /* border radius */
+  --radius-selector: 1rem;
+  --radius-field: 0.25rem;
+  --radius-box: 0.5rem;
+
+  /* base sizes */
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+
+  /* border size */
+  --border: 1px;
+
+  /* effects */
+  --depth: 1;
+  --noise: 0;
 }
+
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
 /* Base style for all nav links */
 a.navlink {

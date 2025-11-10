@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Container from "./Container";
 import { Link, NavLink } from "react-router";
 import { AuthContext } from "../Provider/AuthContext";
@@ -6,6 +6,17 @@ import toast from "react-hot-toast";
 
 const Navbar = () => {
   const { user, setUser, signOutFunc } = useContext(AuthContext);
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+
+  useEffect(() => {
+    const html = document.querySelector("html");
+    html.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
+  const handleTheme = (checked) => {
+    setTheme(checked ? "dark" : "light");
+  };
 
   const handleSignOut = () => {
     signOutFunc()
@@ -17,6 +28,7 @@ const Navbar = () => {
         toast.error(err.message);
       });
   };
+
   const links = (
     <>
       <li>
@@ -69,14 +81,49 @@ const Navbar = () => {
               {links}
             </ul>
           </div>
-          <a className="btn btn-ghost text-xl">
+          <Link to={'/'} className="btn btn-ghost text-xl">
             Clean <span className="text-accent">Hub</span>
-          </a>
+          </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{links}</ul>
         </div>
         <div className="navbar-end space-x-2">
+          <label className="flex cursor-pointer gap-2">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <circle cx="12" cy="12" r="5" />
+              <path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4" />
+            </svg>
+            <input
+              onChange={(e) => handleTheme(e.target.checked)}
+              type="checkbox"
+              checked={theme === "dark"}
+              className="toggle theme-controller"
+            />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+          </label>
           {user ? (
             <div className="dropdown dropdown-end avatar indicator relative">
               <span className="indicator-item badge badge-primary absolute top-1 -right-4 animate-pulse hidden sm:block">
@@ -104,7 +151,7 @@ const Navbar = () => {
           ) : (
             <Link
               to={"/login"}
-              className="btn btn-sm btn-outline hover:btn-primary transition-all duration-300"
+              className="btn btn-outline hover:btn-primary transition-all duration-300"
             >
               Sign In
             </Link>

@@ -1,10 +1,13 @@
-import { useEffect, useState } from "react";
-import useAxios from "../Hooks/useAxios";
+import { useContext, useEffect, useState } from "react";
 import { FaTrash, FaHardHat, FaTools, FaRoad } from "react-icons/fa";
 import Container from "../Components/Container";
 import { Link } from "react-router";
+import { AuthContext } from "../Provider/AuthContext";
+import Loading from "../Components/Loading";
+import useAxios from "../Hooks/useAxios";
 
 const Issues = () => {
+  const { user } = useContext(AuthContext);
   const axiosInstance = useAxios();
   const [issues, setIssues] = useState([]);
   const [category, setCategory] = useState("all");
@@ -23,6 +26,10 @@ const Issues = () => {
       .then((res) => setIssues(res.data))
       .catch((err) => console.error(err));
   }, [axiosInstance, category, status]);
+
+  if (!user) {
+    return <Loading></Loading>;
+  }
 
   return (
     <Container className="p-4 md:p-8 min-h-screen">
@@ -56,7 +63,7 @@ const Issues = () => {
 
       {issues.length === 0 ? (
         <div className="text-center text-lg text-neutral-content">
-          Loading issues... or check if the server is running.
+          Issue Not Found
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -117,7 +124,7 @@ const Issues = () => {
 
                   {/* Location */}
                   <p className="text-sm text-primary italic mb-2">
-                    <span className="font-bold text-black">Location:</span>{" "}
+                    <span className="font-bold">Location:</span>{" "}
                     {issue.location}
                   </p>
 

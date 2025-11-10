@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useState } from "react";
-import { useLoaderData } from "react-router";
+import { useContext, useEffect, useState } from "react";
+import { Link, useLoaderData, useNavigate } from "react-router";
 import {
   FaTrash,
   FaHardHat,
@@ -8,19 +8,20 @@ import {
   FaArrowLeft,
 } from "react-icons/fa";
 import Container from "../Components/Container";
-import useAxios from "../Hooks/useAxios";
 import { AuthContext } from "../Provider/AuthContext";
 import Loading from "../Components/Loading";
+import useAxiosSecure from "../Hooks/useAxiosSecure";
+import useAxios from "../Hooks/useAxios";
 
 const IssueDetails = () => {
   const { user, loading } = useContext(AuthContext);
   const data = useLoaderData();
   const [showModal, setShowModal] = useState(false);
+  const axiosSecure = useAxiosSecure();
   const axiosInstance = useAxios();
   const [contricbutions, setContricbutions] = useState([]);
   const [refetch, setRefetch] = useState(false);
-
-  console.log(data);
+  const navigate = useNavigate();
 
   const handlePayUpContribution = (e) => {
     e.preventDefault();
@@ -46,7 +47,7 @@ const IssueDetails = () => {
     };
     console.log(newContribution);
 
-    axiosInstance.post("/contributions", newContribution).then((data) => {
+    axiosSecure.post("/contributions", newContribution).then((data) => {
       if (data.data.insertedId) {
         alert("contribution success");
         setShowModal(false);
@@ -61,8 +62,6 @@ const IssueDetails = () => {
       setContricbutions(data.data);
     });
   }, [axiosInstance, data?.issueId, refetch]);
-
-  console.log(contricbutions);
 
   const { Icon, badgeClass } =
     data.category === "Garbage"
@@ -82,18 +81,18 @@ const IssueDetails = () => {
   return (
     <Container className="p-6 md:p-10 min-h-screen space-y-10">
       <h2 className="text-3xl font-bold mb-8">
-        <span>
+        <Link onClick={() => navigate(-1)}>
           <FaArrowLeft />
-        </span>
+        </Link>
         Issue <span className="text-primary">Details</span>
       </h2>
-      <div className="card bg-base-100 shadow-xl max-w-3xl mx-auto">
+      <div className="card bg-base-100 shadow-xl w-full mx-auto">
         {/* Image */}
         <figure>
           <img
             src={data.image}
             alt={data.title}
-            className="w-full h-100 object-cover rounded-t-xl"
+            className="w-full h-full object-cover rounded-t-xl"
           />
         </figure>
 
@@ -109,7 +108,7 @@ const IssueDetails = () => {
               <Icon className="h-3 w-3" /> {data.category}
             </span>
             <span className="text-accent">
-              <strong className="text-black">Location:</strong> {data.location}
+              <strong>Location:</strong> {data.location}
             </span>
           </div>
 
@@ -140,7 +139,7 @@ const IssueDetails = () => {
 
       {showModal && (
         <div className="modal modal-open">
-          <div className="modal-box w-full max-w-lg">
+          <div className="modal-box w-full max-w-lg bg-white dark:bg-base-100">
             <h3 className="font-bold text-lg mb-4">Contribution Form</h3>
 
             <form onSubmit={handlePayUpContribution} className="space-y-4">
@@ -257,7 +256,7 @@ const IssueDetails = () => {
           Contributors of this <span className="text-primary">Issue</span>
         </h2>
         {contricbutions.length === 0 ? (
-          <h3 className="text-primary text-xl font-semibold">
+          <h3 className=" text-warning text-xl font-semibold">
             No one Contributed for this Issue
           </h3>
         ) : (
