@@ -1,19 +1,16 @@
-import { useContext, useEffect, useState } from "react";
+import {  useEffect, useState } from "react";
 import { FaTrash, FaHardHat, FaTools, FaRoad } from "react-icons/fa";
 import Container from "../Components/Container";
 import { Link } from "react-router";
-import { AuthContext } from "../Provider/AuthContext";
 import Loading from "../Components/Loading";
 import useAxios from "../Hooks/useAxios";
 
 const Issues = () => {
-  const { user } = useContext(AuthContext);
   const axiosInstance = useAxios();
   const [issues, setIssues] = useState([]);
   const [category, setCategory] = useState("all");
   const [status, setStatus] = useState("all");
-
-  console.log(category, status);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     axiosInstance
@@ -23,11 +20,14 @@ const Issues = () => {
           status,
         },
       })
-      .then((res) => setIssues(res.data))
+      .then((res) => {
+        setIssues(res.data);
+        setLoading(false);
+      })
       .catch((err) => console.error(err));
   }, [axiosInstance, category, status]);
 
-  if (!user) {
+  if (loading) {
     return <Loading></Loading>;
   }
 

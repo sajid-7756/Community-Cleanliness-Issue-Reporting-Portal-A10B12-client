@@ -9,6 +9,7 @@ import MyContribution from "../Pages/MyContribution";
 import Register from "../Pages/Register";
 import PrivateRoute from "./PrivateRoute";
 import IssueDetails from "../Pages/IssueDetails";
+import Error from "../Pages/Error";
 
 const router = createBrowserRouter([
   {
@@ -60,6 +61,10 @@ const router = createBrowserRouter([
       {
         path: "/register",
         Component: Register,
+      },
+      {
+        path: "*",
+        Component: Error,
       },
     ],
   },

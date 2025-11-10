@@ -5,6 +5,7 @@ import { useRef } from "react";
 import useAxiosSecure from "../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
+import Loading from "../Components/Loading";
 
 const MyIssues = () => {
   const axiosSecure = useAxiosSecure();
@@ -12,14 +13,18 @@ const MyIssues = () => {
   const [myIssues, setMyIssues] = useState([]);
   const [selectedIssue, setselectedIssue] = useState([]);
   const issueModalRef = useRef(null);
+  const [loading, setLoading] = useState(true);
 
   const issueId = selectedIssue?._id;
 
   useEffect(() => {
     if (user?.email) {
       axiosSecure
-        .get(`/issues/?email=${user?.email}`)
-        .then((res) => setMyIssues(res.data))
+        .get(`/myIssue/?email=${user?.email}`)
+        .then((res) => {
+          setMyIssues(res.data);
+          setLoading(false);
+        })
         .catch((err) => console.log(err));
     }
   }, [axiosSecure, user]);
@@ -83,6 +88,10 @@ const MyIssues = () => {
       }
     });
   };
+
+  if(loading) {
+    return <Loading></Loading>
+  }
 
   return (
     <Container className="p-6 md:p-10 min-h-screen">

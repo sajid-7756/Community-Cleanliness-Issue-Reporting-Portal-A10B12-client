@@ -3,17 +3,24 @@ import Container from "../Components/Container";
 import { AuthContext } from "../Provider/AuthContext";
 import Table from "../Components/Table";
 import useAxiosSecure from "../Hooks/useAxiosSecure";
+import Loading from "../Components/Loading";
 
 const MyContribution = () => {
-  const axiosSecure = useAxiosSecure()
+  const axiosSecure = useAxiosSecure();
   const { user } = useContext(AuthContext);
   const [myContribution, setmyContribution] = useState([]);
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     axiosSecure.get(`/contributions/?email=${user?.email}`).then((data) => {
       setmyContribution(data.data);
+      setLoading(false);
     });
   }, [user, axiosSecure]);
-  console.log(myContribution);
+
+  if (loading) {
+    return <Loading></Loading>;
+  }
 
   return (
     <Container>
