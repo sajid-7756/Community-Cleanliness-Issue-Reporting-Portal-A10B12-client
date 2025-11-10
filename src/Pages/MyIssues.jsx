@@ -3,6 +3,8 @@ import { AuthContext } from "../Provider/AuthContext";
 import Container from "../Components/Container";
 import { useRef } from "react";
 import useAxiosSecure from "../Hooks/useAxiosSecure";
+import Swal from "sweetalert2";
+import toast from "react-hot-toast";
 
 const MyIssues = () => {
   const axiosSecure = useAxiosSecure();
@@ -16,7 +18,7 @@ const MyIssues = () => {
   useEffect(() => {
     if (user?.email) {
       axiosSecure
-        .get(`/issues/?email=${user.email}`)
+        .get(`/issues/?email=${user?.email}`)
         .then((res) => setMyIssues(res.data))
         .catch((err) => console.log(err));
     }
@@ -50,7 +52,7 @@ const MyIssues = () => {
               issue._id === issueId ? { ...issue, ...updatedIssue } : issue
             )
           );
-          alert("updated sucess");
+          toast.success("Updated Sucess");
           issueModalRef.current.close();
         }
       })
@@ -58,11 +60,27 @@ const MyIssues = () => {
   };
 
   const handleDeleteIssue = (id) => {
-    axiosSecure.delete(`/issues/${id}`).then((data) => {
-      alert("delete success");
-      console.log("data after delete", data.data);
-      const filteredIssues = myIssues.filter((e) => e._id !== id);
-      setMyIssues(filteredIssues);
+    Swal.fire({
+      title: "Are you sure?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "oklch(52% 0.18 150)",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure.delete(`/issues/${id}`).then(() => {
+          const filteredIssues = myIssues.filter((e) => e._id !== id);
+          setMyIssues(filteredIssues);
+
+          Swal.fire({
+            title: "Deleted!",
+            text: "Your Issue has been deleted.",
+            icon: "success",
+            confirmButtonColor: "oklch(52% 0.18 150)",
+          });
+        });
+      }
     });
   };
 

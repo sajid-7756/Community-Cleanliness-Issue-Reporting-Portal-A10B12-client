@@ -41,7 +41,7 @@ const Issues = () => {
         {/* Category Filter */}
         <select
           onChange={(e) => setCategory(e.target.value)}
-          className="select select-bordered"
+          className="select select-bordered bg-white dark:bg-base-100"
         >
           <option value="all">All Categories</option>
           <option value="Garbage">Garbage</option>
@@ -53,7 +53,7 @@ const Issues = () => {
         {/* Status Filter */}
         <select
           onChange={(e) => setStatus(e.target.value)}
-          className="select select-bordered"
+          className="select select-bordered bg-white dark:bg-base-100"
         >
           <option value="all">All Status</option>
           <option value="ongoing">Ongoing</option>

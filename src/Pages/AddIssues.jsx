@@ -65,7 +65,7 @@ const AddIssue = () => {
             {/* Category Dropdown */}
             <div>
               <label className="label">Category</label>
-              <select name="category" className="select select-bordered w-full">
+              <select name="category" className="select select-bordered w-full bg-white dark:bg-base-100">
                 <option>Garbage</option>
                 <option>Illegal Construction</option>
                 <option>Broken Public Property</option>

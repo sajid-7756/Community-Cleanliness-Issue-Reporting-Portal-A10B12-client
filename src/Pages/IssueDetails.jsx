@@ -12,6 +12,7 @@ import { AuthContext } from "../Provider/AuthContext";
 import Loading from "../Components/Loading";
 import useAxiosSecure from "../Hooks/useAxiosSecure";
 import useAxios from "../Hooks/useAxios";
+import toast from "react-hot-toast";
 
 const IssueDetails = () => {
   const { user, loading } = useContext(AuthContext);
@@ -45,11 +46,10 @@ const IssueDetails = () => {
       category: data?.category,
       title: data?.title,
     };
-    console.log(newContribution);
-
+    
     axiosSecure.post("/contributions", newContribution).then((data) => {
       if (data.data.insertedId) {
-        alert("contribution success");
+        toast.success("contribution success");
         setShowModal(false);
         console.log("data after post", data.data);
         setRefetch((prev) => !prev);

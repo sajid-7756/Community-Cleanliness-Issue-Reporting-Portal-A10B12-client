@@ -81,7 +81,7 @@ const Navbar = () => {
               {links}
             </ul>
           </div>
-          <Link to={'/'} className="btn btn-ghost text-xl">
+          <Link to={"/"} className="btn btn-ghost text-xl">
             Clean <span className="text-accent">Hub</span>
           </Link>
         </div>
@@ -139,7 +139,7 @@ const Navbar = () => {
               </label>
               <ul
                 tabIndex={0}
-                className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-30 absolute top-14 "
+                className="dropdown-content menu p-2 shadow dark:bg-base-100 rounded-box w-30 bg-white absolute top-14 "
               >
                 <li>
                   <button className="btn btn-outline" onClick={handleSignOut}>

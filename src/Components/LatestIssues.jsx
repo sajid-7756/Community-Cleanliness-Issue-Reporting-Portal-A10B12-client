@@ -3,10 +3,12 @@ import { FaTrash, FaHardHat, FaTools, FaRoad } from "react-icons/fa";
 import useAxios from "../Hooks/useAxios";
 import { Link } from "react-router";
 import Container from "./Container";
+import Loading from "./Loading";
 
 const LatestIssues = () => {
   const [latestIssues, setlatestIssues] = useState([]);
   const axiosInstance = useAxios();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     axiosInstance
@@ -14,9 +16,14 @@ const LatestIssues = () => {
       .then((res) => {
         console.log(res.data);
         setlatestIssues(res.data);
+        setLoading(false);
       })
       .catch((err) => console.error(err));
   }, [axiosInstance]);
+
+  if (loading) {
+    return <Loading></Loading>;
+  }
 
   return (
     <Container className="p-4 md:p-8 min-h-screen">
@@ -76,8 +83,7 @@ const LatestIssues = () => {
 
                 {/* Location */}
                 <p className="text-sm text-primary italic mb-2">
-                  <span className="font-bold">Location:</span>{" "}
-                  {issue.location}
+                  <span className="font-bold">Location:</span> {issue.location}
                 </p>
 
                 <p className="text-base-content text-opacity-80 line-clamp-2 text-sm mb-4">
