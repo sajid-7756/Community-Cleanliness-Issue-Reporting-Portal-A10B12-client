@@ -78,7 +78,10 @@ const Navbar = () => {
         </div>
         <div className="navbar-end space-x-2">
           {user ? (
-            <div className="dropdown dropdown-end">
+            <div className="dropdown dropdown-end avatar indicator relative">
+              <span className="indicator-item badge badge-primary absolute top-1 -right-4 animate-pulse hidden sm:block">
+                {user?.displayName}
+              </span>
               <label tabIndex={0} className="cursor-pointer">
                 <img
                   title={user.displayName}
@@ -89,10 +92,12 @@ const Navbar = () => {
               </label>
               <ul
                 tabIndex={0}
-                className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-30 "
+                className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-30 absolute top-14 "
               >
                 <li>
-                  <button className="btn btn-outline" onClick={handleSignOut}>Logout</button>
+                  <button className="btn btn-outline" onClick={handleSignOut}>
+                    Logout
+                  </button>
                 </li>
               </ul>
             </div>

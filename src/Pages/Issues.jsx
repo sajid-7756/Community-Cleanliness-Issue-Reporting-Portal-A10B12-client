@@ -7,18 +7,52 @@ import { Link } from "react-router";
 const Issues = () => {
   const axiosInstance = useAxios();
   const [issues, setIssues] = useState([]);
+  const [category, setCategory] = useState("all");
+  const [status, setStatus] = useState("all");
+
+  console.log(category, status);
 
   useEffect(() => {
-    axiosInstance.get("/issues")
+    axiosInstance
+      .get("/issues", {
+        params: {
+          category,
+          status,
+        },
+      })
       .then((res) => setIssues(res.data))
       .catch((err) => console.error(err));
-  }, [axiosInstance]);
+  }, [axiosInstance, category, status]);
 
   return (
     <Container className="p-4 md:p-8 min-h-screen">
       <h2 className="text-3xl font-bold mb-8">
         All <span className="text-primary">Issues</span>
       </h2>
+
+      <div className="flex justify-between flex-wrap gap-4 mb-6">
+        {/* Category Filter */}
+        <select
+          onChange={(e) => setCategory(e.target.value)}
+          className="select select-bordered"
+        >
+          <option value="all">All Categories</option>
+          <option value="Garbage">Garbage</option>
+          <option value="Illegal Construction">Illegal Construction</option>
+          <option value="Broken Public Property">Broken Public Property</option>
+          <option value="Road Damage">Road Damage</option>
+        </select>
+
+        {/* Status Filter */}
+        <select
+          onChange={(e) => setStatus(e.target.value)}
+          className="select select-bordered"
+        >
+          <option value="all">All Status</option>
+          <option value="ongoing">Ongoing</option>
+          <option value="ended">Ended</option>
+        </select>
+      </div>
 
       {issues.length === 0 ? (
         <div className="text-center text-lg text-neutral-content">
@@ -29,19 +63,27 @@ const Issues = () => {
           {issues.map((issue, index) => {
             // choose icon
             const Icon =
-              issue.category === "Garbage" ? FaTrash :
-              issue.category === "Illegal Construction" ? FaHardHat :
-              issue.category === "Broken Public Property" ? FaTools :
-              issue.category === "Road Damage" ? FaRoad :
-              FaTools;
+              issue.category === "Garbage"
+                ? FaTrash
+                : issue.category === "Illegal Construction"
+                ? FaHardHat
+                : issue.category === "Broken Public Property"
+                ? FaTools
+                : issue.category === "Road Damage"
+                ? FaRoad
+                : FaTools;
 
             // choose badge class
             const badgeClass =
-              issue.category === "Garbage" ? "badge-primary" :
-              issue.category === "Illegal Construction" ? "badge-secondary" :
-              issue.category === "Broken Public Property" ? "badge-warning" :
-              issue.category === "Road Damage" ? "badge-error" :
-              "badge-neutral";
+              issue.category === "Garbage"
+                ? "badge-primary"
+                : issue.category === "Illegal Construction"
+                ? "badge-secondary"
+                : issue.category === "Broken Public Property"
+                ? "badge-warning"
+                : issue.category === "Road Damage"
+                ? "badge-error"
+                : "badge-neutral";
 
             return (
               <div
@@ -75,7 +117,8 @@ const Issues = () => {
 
                   {/* Location */}
                   <p className="text-sm text-primary italic mb-2">
-                    <span className="font-bold text-black">Location:</span> {issue.location}
+                    <span className="font-bold text-black">Location:</span>{" "}
+                    {issue.location}
                   </p>
 
                   {/* Description */}
@@ -85,7 +128,10 @@ const Issues = () => {
 
                   {/* Details Button */}
                   <div className="card-actions justify-end">
-                    <Link to={`/issue-details/${issue._id}`} className="btn btn-primary btn-sm text-primary-content hover:bg-primary-focus">
+                    <Link
+                      to={`/issue-details/${issue._id}`}
+                      className="btn btn-primary text-primary-content hover:bg-primary-focus"
+                    >
                       See Details
                     </Link>
                   </div>
