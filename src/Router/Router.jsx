@@ -27,7 +27,7 @@ const router = createBrowserRouter([
       {
         path: "/issue-details/:id",
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/issues/${params.id}`),
+          fetch(`https://assignment-10-server-xi-navy.vercel.app/issues/${params.id}`),
         element: (
           <PrivateRoute>
             <IssueDetails></IssueDetails>

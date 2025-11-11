@@ -1,13 +1,8 @@
-import React from "react";
 import {
   FaTrash,
   FaHardHat,
   FaTools,
   FaRoad,
-  FaLightbulb,
-  FaTree,
-  FaWater,
-  FaExclamationTriangle,
 } from "react-icons/fa";
 import Container from "./Container";
 

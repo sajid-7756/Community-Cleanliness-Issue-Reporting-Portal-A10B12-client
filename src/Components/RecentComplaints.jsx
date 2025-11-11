@@ -143,7 +143,7 @@ const RecentComplaints = () => {
                     to={`/issue-details/${issue._id}`}
                     className={`w-full ${colorScheme.bg} hover:opacity-90 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 group-hover:gap-4 shadow-md hover:shadow-xl transform active:scale-95`}
                   >
-                    <span>View Details</span>
+                    <span>See Details</span>
                     <FaArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                   </Link>
                 </div>

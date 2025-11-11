@@ -38,41 +38,67 @@ const CommunityStats = () => {
   const resolvedIssue = myIssues.filter((issue) => issue.status === "ended");
 
   console.log({ pendingIssue, resolvedIssue });
+
   return (
-    <Container className="p-6 md:p-10 bg-base-100 rounded-xl shadow-lg">
-      <h2 className="text-3xl font-bold mb-9 text-base-content">
-        Community <span className="text-primary">Stats</span>
-      </h2>
-
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {/* Users */}
-        <div className="stat bg-base-200 rounded-lg p-6 flex flex-col items-center">
-          <FaUsers className="text-primary text-3xl mb-2" />
-          <div className="text-3xl font-bold text-base-content">
-            {stats?.length}
+    <div className="p-6 md:p-10 bg-secondary/50">
+      <Container className="p-4 space-y-10">
+        <h2 className="text-3xl font-bold text-base-content">
+          Community <span className="text-primary">Stats</span>
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {/* Users */}
+          <div className="group bg-white dark:bg-base-100 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+            <div className="flex flex-col items-center space-y-3">
+              <div className="bg-primary/10 p-4 rounded-full group-hover:scale-110 transition-transform duration-300">
+                <FaUsers className="text-primary text-4xl" />
+              </div>
+              <div className="text-center">
+                <div className="text-4xl font-bold text-base-content mb-1 tabular-nums">
+                  {stats?.length || 0}
+                </div>
+                <div className="text-sm font-medium text-base-content/60 uppercase tracking-wide">
+                  Registered Users
+                </div>
+              </div>
+            </div>
           </div>
-          <div className="text-sm text-base-content/70">Registered Users</div>
-        </div>
 
-        {/* Resolved Issues */}
-        <div className="stat bg-base-200 rounded-lg p-6 flex flex-col items-center">
-          <FaCheckCircle className="text-success text-3xl mb-2" />
-          <div className="text-3xl font-bold text-base-content">
-            {user ? resolvedIssue.length : 0}
+          {/* Resolved Issues */}
+          <div className="group bg-white dark:bg-base-100 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+            <div className="flex flex-col items-center space-y-3">
+              <div className="bg-success/10 p-4 rounded-full group-hover:scale-110 transition-transform duration-300">
+                <FaCheckCircle className="text-success text-4xl" />
+              </div>
+              <div className="text-center">
+                <div className="text-4xl font-bold text-base-content mb-1 tabular-nums">
+                  {user ? resolvedIssue.length : 0}
+                </div>
+                <div className="text-sm font-medium text-base-content/60 uppercase tracking-wide">
+                  Issues Resolved
+                </div>
+              </div>
+            </div>
           </div>
-          <div className="text-sm text-base-content/70">Issues Resolved</div>
-        </div>
 
-        {/* Pending Issues */}
-        <div className="stat bg-base-200 rounded-lg p-6 flex flex-col items-center">
-          <FaHourglassHalf className="text-warning text-3xl mb-2" />
-          <div className="text-3xl font-bold text-base-content">
-            {user ? pendingIssue.length : 0}
+          {/* Pending Issues */}
+          <div className="group bg-white dark:bg-base-100 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+            <div className="flex flex-col items-center space-y-3">
+              <div className="bg-warning/10 p-4 rounded-full group-hover:scale-110 transition-transform duration-300">
+                <FaHourglassHalf className="text-warning text-4xl" />
+              </div>
+              <div className="text-center">
+                <div className="text-4xl font-bold text-base-content mb-1 tabular-nums">
+                  {user ? pendingIssue.length : 0}
+                </div>
+                <div className="text-sm font-medium text-base-content/60 uppercase tracking-wide">
+                  Issues Pending
+                </div>
+              </div>
+            </div>
           </div>
-          <div className="text-sm text-base-content/70">Issues Pending</div>
         </div>
-      </div>
-    </Container>
+      </Container>
+    </div>
   );
 };
 

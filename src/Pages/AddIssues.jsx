@@ -32,6 +32,7 @@ const AddIssue = () => {
     axiosSecure.post("/issues", newIssue).then((data) => {
       toast.success("Successfully added");
       console.log("issue after post", data.data);
+      e.target.reset();
     });
   };
 
@@ -66,7 +67,10 @@ const AddIssue = () => {
             {/* Category Dropdown */}
             <div>
               <label className="label">Category</label>
-              <select name="category" className="select select-bordered w-full bg-white dark:bg-base-100">
+              <select
+                name="category"
+                className="select select-bordered w-full bg-white dark:bg-base-100"
+              >
                 <option>Garbage</option>
                 <option>Illegal Construction</option>
                 <option>Broken Public Property</option>
