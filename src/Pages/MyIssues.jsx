@@ -94,7 +94,7 @@ const MyIssues = () => {
   }
 
   return (
-    <Container className="p-6 md:p-10 min-h-screen">
+    <Container className="p-6 md:p-10">
       <title>My Issues</title>
       <h3 className="text-2xl font-bold mb-6">
         My <span className="text-primary">Issues </span>({myIssues.length})

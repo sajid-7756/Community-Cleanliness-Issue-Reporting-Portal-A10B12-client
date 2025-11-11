@@ -53,7 +53,7 @@ const Navbar = () => {
     </>
   );
   return (
-    <div className="navbar bg-base-100 shadow-sm">
+    <div className="navbar bg-white/50 dark:bg-base-100/50 shadow-sm sticky top-0 z-50 backdrop-blur-md p-4">
       <Container className="flex">
         <div className="navbar-start">
           <div className="dropdown">

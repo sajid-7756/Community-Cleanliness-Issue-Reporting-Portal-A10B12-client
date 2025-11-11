@@ -23,7 +23,7 @@ const NextArrow = ({ onClick }) => (
 
 const handleScrollDown = () => {
   window.scrollTo({
-    top: 700,
+    top: 650,
     behavior: "smooth",
   });
 };  

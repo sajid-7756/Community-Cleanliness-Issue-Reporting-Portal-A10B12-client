@@ -70,8 +70,10 @@ const Issues = () => {
       </div>
 
       {issues.length === 0 ? (
-        <div className="text-center text-lg text-neutral-content">
-          Issue Not Found
+        <div className="flex min-h-100 justify-center items-center">
+          <div className="text-center text-5xl text-warning font-semibold">
+            Issue Not Found
+          </div>
         </div>
       ) : (
         <Container className="min-h-screen bg-linear-to-br p-4 md:p-8">
@@ -171,7 +173,8 @@ const Issues = () => {
 
                       {/* Description */}
                       <p className="text-sm leading-relaxed mb-4 grow line-clamp-3">
-                       Amount: <span className="font-semibold">{issue.amount} $</span>
+                        Amount:{" "}
+                        <span className="font-semibold">{issue.amount} $</span>
                       </p>
 
                       {/* Divider */}
