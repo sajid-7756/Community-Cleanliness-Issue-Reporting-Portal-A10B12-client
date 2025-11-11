@@ -90,6 +90,7 @@ const Login = () => {
 
   return (
     <>
+    <title>Clean Hub - Login</title>
       <title>Pet Care - Sign In</title>
       <section className="w-11/12 mx-auto my-12 flex flex-col items-center justify-center">
         <div className="w-full max-w-md bg-base-100 shadow-lg rounded-xl p-6 space-y-4">

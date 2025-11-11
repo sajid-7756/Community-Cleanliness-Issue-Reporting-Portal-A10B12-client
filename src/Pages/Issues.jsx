@@ -33,6 +33,7 @@ const Issues = () => {
 
   return (
     <Container className="p-4 md:p-8 min-h-screen">
+      <title>All Issues</title>
       <h2 className="text-3xl font-bold mb-8">
         All <span className="text-primary">Issues</span>
       </h2>

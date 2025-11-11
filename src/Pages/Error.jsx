@@ -3,6 +3,7 @@ import { Link } from "react-router";
 const Error = () => {
   return (
     <main className="min-h-screen flex items-center justify-center bg-base-100 p-6">
+      <title>Error - 404</title>
       <div className="max-w-md w-full text-center">
         <div className="mb-6">
           <div className="badge badge-error text-error-content px-4 py-3 text-sm font-semibold">

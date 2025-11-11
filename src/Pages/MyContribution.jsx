@@ -24,6 +24,7 @@ const MyContribution = () => {
 
   return (
     <Container>
+      <title>My Contributions</title>
       <h2 className="text-3xl font-bold my-8 px-2">
         My <span className="text-primary">Contributions</span>
       </h2>

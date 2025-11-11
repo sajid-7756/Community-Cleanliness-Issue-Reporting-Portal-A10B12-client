@@ -80,6 +80,7 @@ const IssueDetails = () => {
 
   return (
     <Container className="p-6 md:p-10 min-h-screen space-y-10">
+      <title>Issue Details</title>
       <h2 className="text-3xl font-bold mb-8">
         <Link onClick={() => navigate(-1)}>
           <FaArrowLeft />

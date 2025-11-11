@@ -89,12 +89,13 @@ const MyIssues = () => {
     });
   };
 
-  if(loading) {
-    return <Loading></Loading>
+  if (loading) {
+    return <Loading></Loading>;
   }
 
   return (
     <Container className="p-6 md:p-10 min-h-screen">
+      <title>My Issues</title>
       <h3 className="text-2xl font-bold mb-6">
         My <span className="text-primary">Issues </span>({myIssues.length})
       </h3>

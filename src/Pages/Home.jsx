@@ -8,6 +8,7 @@ import VolunteerCTA from "../Components/VolunteerCTA";
 const Home = () => {
   return (
     <div className="space-y-15">
+      <title>Clean Hub - Home</title>
       <BannerSlider></BannerSlider>
       <IssueCategories></IssueCategories>
       <LatestIssues></LatestIssues>

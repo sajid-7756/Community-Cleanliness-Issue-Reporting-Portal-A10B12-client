@@ -123,7 +123,7 @@ const Register = () => {
 
   return (
     <>
-      <title>Pet Care - Sign Up</title>
+    <title>Clean Hub - Register</title>
       <section className="w-11/12 mx-auto my-12 flex justify-center">
         <form
           onSubmit={handleSignUp}

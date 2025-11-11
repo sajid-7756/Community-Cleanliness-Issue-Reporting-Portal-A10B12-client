@@ -37,6 +37,7 @@ const AddIssue = () => {
 
   return (
     <div className="p-6 md:p-10 min-h-screen bg-base-100">
+      <title>Add Issues</title>
       {/* Header */}
       <div className="text-center mb-8">
         <h2 className="text-3xl font-bold">
