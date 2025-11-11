@@ -35,7 +35,6 @@
   --color-error: oklch(55% 0.25 30); /* earthy red */
   --color-error-content: oklch(98% 0.01 30);
 
-
   /* border radius */
   --radius-selector: 1rem;
   --radius-field: 0.25rem;
@@ -57,14 +56,14 @@
   color-scheme: dark;
 
   /* Backgrounds */
---color-primary: oklch(52% 0.18 150);   /* softer green for dark mode */
---color-secondary: oklch(58% 0.16 180); /* teal, less bright */
---color-accent: oklch(62% 0.18 140);    /* lime accent, balanced */
---color-neutral: oklch(28% 0.02 240);   /* deep gray */
+  --color-primary: oklch(52% 0.18 150); /* softer green for dark mode */
+  --color-secondary: oklch(58% 0.16 180); /* teal, less bright */
+  --color-accent: oklch(62% 0.18 140); /* lime accent, balanced */
+  --color-neutral: oklch(28% 0.02 240); /* deep gray */
 
   /* Brand greens (slightly brighter for dark mode) */
---color-primary: oklch(56% 0.18 150); /* softer eco green */
---color-primary-content: oklch(95% 0.01 150); /* light text for contrast */
+  --color-primary: oklch(56% 0.18 150); /* softer eco green */
+  --color-primary-content: oklch(95% 0.01 150); /* light text for contrast */
 
   --color-secondary: oklch(70% 0.2 180); /* teal/blue‑green */
   --color-secondary-content: oklch(10% 0.02 180);
@@ -139,7 +138,7 @@ a.navlink.active {
 .swiper-button-next:hover,
 .swiper-button-prev:hover {
   color: hsl(var(--pc));
-  background: hsl(var(--p)); 
+  background: hsl(var(--p));
 }
 .rdg {
   --rdg-color: #000;
@@ -156,4 +155,77 @@ a.navlink.active {
 }
 .rdg .rdg-row:hover {
   transition: background-color 0.2s ease-in-out;
+}
+@keyframes gradient {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient 5s ease infinite;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.8s ease-out;
+}
+
+@keyframes gradient {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient 5s ease infinite;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.8s ease-out;
+}
+
+@keyframes pulse-slow {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.2;
+  }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 3s ease-in-out infinite;
 }
