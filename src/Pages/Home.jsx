@@ -1,9 +1,9 @@
 import React from "react";
 import BannerSlider from "../Components/BannerSlider";
 import IssueCategories from "../Components/IssueCategories";
-import LatestIssues from "../Components/LatestIssues";
 import CommunityStats from "../Components/CommunityStats";
 import VolunteerCTA from "../Components/VolunteerCTA";
+import RecentComplaints from "../Components/RecentComplaints";
 
 const Home = () => {
   return (
@@ -11,7 +11,7 @@ const Home = () => {
       <title>Clean Hub - Home</title>
       <BannerSlider></BannerSlider>
       <IssueCategories></IssueCategories>
-      <LatestIssues></LatestIssues>
+      <RecentComplaints></RecentComplaints>
       <CommunityStats></CommunityStats>
       <VolunteerCTA></VolunteerCTA>
     </div>

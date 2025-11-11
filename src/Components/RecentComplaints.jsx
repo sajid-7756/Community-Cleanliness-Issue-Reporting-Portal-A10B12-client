@@ -12,7 +12,7 @@ import { Link } from "react-router";
 import Container from "./Container";
 import Loading from "./Loading";
 
-const LatestIssues = () => {
+const RecentComplaints = () => {
   const [latestIssues, setlatestIssues] = useState([]);
   const axiosInstance = useAxios();
   const [loading, setLoading] = useState(true);
@@ -35,8 +35,8 @@ const LatestIssues = () => {
   return (
     <Container className="min-h-screen bg-linear-to-br p-4 md:p-8">
       <div className="mb-10">
-        <h1 className="text-3xl font-bold mb-6">
-          Issue <span className="text-primary">Categories</span>
+        <h1 className="text-4xl font-bold mb-6">
+          Recent <span className="text-primary">Complaints</span>
         </h1>
         <p className="mt-6 text-lg">
           Community reported issues awaiting resolution
@@ -93,11 +93,6 @@ const LatestIssues = () => {
               className="group relative bg-base-100 rounded-2xl shadow-md hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 overflow-hidden"
               style={{ animationDelay: `${index * 100}ms` }}
             >
-              {/* Animated Border */}
-              <div
-                className={`absolute inset-0 bg-linear-to-r ${colorScheme.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm -z-10`}
-              ></div>
-
               {/* Card Content */}
               <div className="relative bg-base-100 rounded-2xl overflow-hidden h-full flex flex-col">
                 {/* Image Section */}
@@ -118,30 +113,23 @@ const LatestIssues = () => {
                     <Icon className="h-4 w-4" />
                     {issue.category}
                   </div>
-
-                  {/* Floating Icon Effect on Hover */}
-                  <div
-                    className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-20 transition-all duration-500 group-hover:scale-150`}
-                  >
-                    <Icon className="h-32 w-32 text-white" />
-                  </div>
                 </div>
 
                 {/* Content Section - Always Visible */}
                 <div className="p-6 flex flex-col grow bg-base-100">
                   {/* Title */}
-                  <h3 className="text-xl font-bold text-gray-800 mb-3 group-hover:text-transparent group-hover:bg-linear-to-r group-hover:from-blue-600 group-hover:to-purple-600 group-hover:bg-clip-text transition-all duration-300">
+                  <h3 className="text-xl font-bold mb-3 group-hover:text-transparent group-hover:bg-linear-to-r group-hover:from-blue-600 group-hover:to-purple-600 group-hover:bg-clip-text transition-all duration-300">
                     {issue.title}
                   </h3>
 
                   {/* Location */}
-                  <div className="flex items-center text-sm font-medium mb-4 text-gray-600 group-hover:text-blue-600 transition-colors duration-300">
+                  <div className="flex items-center text-sm font-medium mb-4 group-hover:text-blue-600 transition-colors duration-300">
                     <FaMapMarkerAlt className="h-4 w-4 mr-2 shrink-0" />
                     <span className="truncate">{issue.location}</span>
                   </div>
 
                   {/* Description */}
-                  <p className="text-gray-600 text-sm leading-relaxed mb-4 grow line-clamp-3">
+                  <p className="text-sm leading-relaxed mb-4 grow line-clamp-3">
                     {issue.description}
                   </p>
 
@@ -151,12 +139,13 @@ const LatestIssues = () => {
                   ></div>
 
                   {/* Action Button */}
-                  <button
+                  <Link
+                    to={`/issue-details/${issue._id}`}
                     className={`w-full ${colorScheme.bg} hover:opacity-90 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 group-hover:gap-4 shadow-md hover:shadow-xl transform active:scale-95`}
                   >
                     <span>View Details</span>
                     <FaArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-                  </button>
+                  </Link>
                 </div>
 
                 {/* Shine Effect on Hover */}
@@ -172,4 +161,4 @@ const LatestIssues = () => {
   );
 };
 
-export default LatestIssues;
+export default RecentComplaints;

@@ -52,7 +52,7 @@ const CategoriesSection = () => {
     <Container className="p-8">
       {/* Header with Animation */}
       <div className="mb-10">
-        <h1 className="text-3xl font-bold mb-6">
+        <h1 className="text-4xl font-bold mb-6">
           Issue <span className="text-primary">Categories</span>
         </h1>
         <p className="mt-6 text-lg">
