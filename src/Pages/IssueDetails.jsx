@@ -310,7 +310,6 @@ const IssueDetails = () => {
               {decContribution.map((contricbution, index) => (
                 <tr key={contricbution._id}>
                   <td>{index + 1}</td>
-                  {console.log(contricbution)}
                   <td>
                     <div className="flex items-center">
                       <div className="avatar flex justify-center items-center gap-2">
