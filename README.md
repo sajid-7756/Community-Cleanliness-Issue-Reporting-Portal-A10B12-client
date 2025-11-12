@@ -5,6 +5,10 @@ Built with **React**, **TailwindCSS/DaisyUI**, and modern libraries, it provides
 
 ---
 
+## 🔗 Live Demo
+
+👉 [View CleanHub Live](https://a10-b11-issuereport-4c3a42.netlify.app/)
+
 ## ✨ Features
 
 - 📊 **Community Stats** – Track registered users, resolved issues, and pending reports.
@@ -29,11 +33,14 @@ Built with **React**, **TailwindCSS/DaisyUI**, and modern libraries, it provides
 ## 🚀 Getting Started
 
 ### Prerequisites
+
 - Node.js (>= 16)
 - npm or yarn
 
 ### Installation
+
 ```bash
 git clone https://github.com/sajid-7756/Community-Cleanliness-Issue-Reporting-Portal-A10B11-client.git
 cd cleanhub
 npm install
+```
