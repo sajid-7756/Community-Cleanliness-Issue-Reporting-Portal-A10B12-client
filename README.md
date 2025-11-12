@@ -49,6 +49,6 @@ npm install
 
 ---
 
-- 👨‍💻 Developer – -Sajid !
+- 👨‍💻 Developer – Sajid !
 
 ---
