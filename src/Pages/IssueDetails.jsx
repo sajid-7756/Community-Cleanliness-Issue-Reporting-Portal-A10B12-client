@@ -310,14 +310,16 @@ const IssueDetails = () => {
               {decContribution.map((contricbution, index) => (
                 <tr key={contricbution._id}>
                   <td>{index + 1}</td>
+                  {console.log(contricbution)}
                   <td>
                     <div className="flex items-center">
                       <div className="avatar flex justify-center items-center gap-2">
                         <div className="mask mask-squircle h-12 w-12">
                           <img
                             src={
-                              contricbution.image ||
-                              "https://img.daisyui.com/images/profile/demo/5@94.webp"
+                              contricbution.image.startsWith("https")
+                                ? contricbution.image
+                                : "https://i.ibb.co.com/CpHdF8h2/icons8-user.gif"
                             }
                             alt={contricbution.title}
                           />
