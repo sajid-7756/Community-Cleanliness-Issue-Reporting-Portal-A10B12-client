@@ -32,9 +32,8 @@ const AddIssue = () => {
       date: new Date().toLocaleDateString(),
     };
 
-    axiosSecure.post("/issues", newIssue).then((data) => {
+    axiosSecure.post("/issues", newIssue).then(() => {
       toast.success("Successfully added");
-      console.log("issue after post", data.data);
       e.target.reset();
     });
   };

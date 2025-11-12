@@ -52,7 +52,6 @@ const MyIssues = () => {
       .patch(`/issues/${issueId}`, updatedIssue)
       .then((res) => {
         if (res.data.modifiedCount) {
-          console.log("Issue updated", res.data);
           setMyIssues((prevIssues) =>
             prevIssues.map((issue) =>
               issue._id === issueId ? { ...issue, ...updatedIssue } : issue
@@ -91,7 +90,6 @@ const MyIssues = () => {
   };
 
   const reversed = [...myIssues].reverse();
-  console.log(reversed);
 
   if (loading) {
     return <Loading></Loading>;

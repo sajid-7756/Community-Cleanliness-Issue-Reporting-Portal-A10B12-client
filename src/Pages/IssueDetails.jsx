@@ -52,7 +52,6 @@ const IssueDetails = () => {
       if (data.data.insertedId) {
         toast.success("contribution success");
         setShowModal(false);
-        console.log("data after post", data.data);
         setRefetch((prev) => !prev);
       }
     });
@@ -61,13 +60,11 @@ const IssueDetails = () => {
   useEffect(() => {
     axiosInstance.get(`/contributions/${data?._id}`).then((data) => {
       setContricbutions(data.data);
-      console.log(data.issueId);
       setLoading(false);
     });
   }, [axiosInstance, data?._id, refetch]);
 
   const decContribution = contricbutions.sort((a, b) => b.amount - a.amount);
-  console.log(decContribution);
 
   const { Icon, badgeClass } =
     data.category === "Garbage"

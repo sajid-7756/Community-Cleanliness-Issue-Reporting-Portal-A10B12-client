@@ -40,7 +40,6 @@ const Login = () => {
   const handleGoogleSignIn = () => {
     signInGoogleFunc()
       .then((result) => {
-        console.log(result.user);
         const newUser = {
           name: result.user.displayName,
           email: result.user.email,
@@ -49,14 +48,12 @@ const Login = () => {
 
         axiosInstance
           .post("/users", newUser)
-          .then((data) => {
-            console.log(data.data);
+          .then(() => {
             toast.success("Google Sign In Success");
           })
           .catch((err) => console.log(err));
       })
       .catch((error) => {
-        console.log(error);
         toast.error(error.code);
       });
   };

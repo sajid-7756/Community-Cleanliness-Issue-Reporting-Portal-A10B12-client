@@ -22,7 +22,6 @@ const RecentComplaints = () => {
     axiosInstance
       .get("/latest-issues")
       .then((res) => {
-        console.log(res.data);
         setlatestIssues(res.data);
         setLoading(false);
       })

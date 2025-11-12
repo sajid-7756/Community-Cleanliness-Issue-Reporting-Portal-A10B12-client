@@ -20,7 +20,6 @@ const CommunityStats = () => {
     axiosInstance
       .get("/users")
       .then((data) => {
-        // console.log(data.data)
         setStats(data.data);
       })
       .catch((err) => console.error(err));
