@@ -38,6 +38,7 @@ const Issues = () => {
       });
   }, [axiosInstance, category, status]);
 
+
   // Handle Search, Sort and Local Filtering
   useEffect(() => {
     let result = [...issues];

@@ -6,6 +6,7 @@ import { useNavigate } from "react-router";
 const instance = axios.create({
   baseURL: "https://assignment-10-server-xi-navy.vercel.app",
 });
+
 const useAxiosSecure = () => {
   const { user, signOutFunc } = useContext(AuthContext);
   const navigate = useNavigate();
